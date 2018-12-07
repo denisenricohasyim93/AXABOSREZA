@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var { erpNextCredentials, superAdminToken } = require('../credentials')
+var { erpNextCredentials, superAdminToken, ERPNEXT_API_BASE_URL } = require('../credentials')
 const fetch = require('node-fetch')
 
 router.get('/', function (req, res) {
@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     if (req.body.superAdminToken === superAdminToken) {
-        fetch('http://182.23.20.109:8000/api/resource/User', {
+        fetch(ERPNEXT_API_BASE_URL+'/api/resource/User', {
             method: 'GET',
             headers: {
                 'Authorization': "token "+erpNextCredentials.api_key+":"+erpNextCredentials.api_secret
