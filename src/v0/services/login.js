@@ -24,7 +24,7 @@ router.post('/', function (req, res) {
                 .then(json => {
                     if (json.message === "Logged In") {
                         var token = jwt.sign({}, jsonwebtokensecret);
-                        res.send({ status: 200, message: 'Login Berhasil', token: token})
+                        res.send({ status: 200, message: 'Login Berhasil', token: token, json : json})
                     } else {
                         res.send({ status: 500, message: 'Login Gagal'})
                     }
