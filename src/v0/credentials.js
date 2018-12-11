@@ -1,6 +1,6 @@
 const erpNextCredentials = {
     api_key : "d735d4aef702023",
-    api_secret : "0e36c896f843ea6"
+    api_secret : "0f3c129f37d0c44"
 }
 
 const superAdminToken = 'szgdhxfgchvkjbkvgcfjxdhfgchvjgjcfhxdgfch'
