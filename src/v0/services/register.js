@@ -9,70 +9,119 @@ router.get('/', function (req, res) {
 })
 
 router.post('/', function (req, res) {
-    fetch(ERPNEXT_API_BASE_URL+'/api/resource/User',{
-        method : 'post',
-        body : JSON.stringify({
-            "email" : req.body.email,
-            "first_name" : req.body.full_name,
-            "user_type" : "System User",
-            "new_password" : req.body.new_password,
-            "user_image" : req.body.user_image,
-            "role_html" : "Agriculture Manager",
-            "Gender" : req.body.gender,
-            "mobile_no" : req.body.mobile_no,
-            "location" : req.body.address,
-            "roles" : [
-                    {
-                        "role": "Agriculture Manager",
-                        "doctype": "Has Role",
-                        "creation": "2018-11-24 18:14:18.356269",
-                        "docstatus": 0,
-                        "parentfield": "roles",
-                        "parenttype": "User",
-                        "name": "45319a73e6",
-                        "idx": 4,
-                        "owner": "Administrator",
-                        "modified_by": "denisenricohasyim93@gmail.com",
-                        "modified": "2018-11-24 18:17:50.792479",
-                        "parent": "denisenricohasyim93@gmail.com"
-                    },
-                    {
-                        "role": "Agriculture User",
-                        "doctype": "Has Role",
-                        "creation": "2018-11-24 18:14:18.356269",
-                        "docstatus": 0,
-                        "parentfield": "roles",
-                        "parenttype": "User",
-                        "name": "2d8d5f0658",
-                        "idx": 5,
-                        "owner": "Administrator",
-                        "modified_by": "denisenricohasyim93@gmail.com",
-                        "modified": "2018-11-24 18:17:50.792479",
-                        "parent": "denisenricohasyim93@gmail.com"
-                    }
-                ]
-        }),
-        headers : {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json',
-            'Authorization' : 'token '+erpNextCredentials.api_key+':'+erpNextCredentials.api_secret
-        }
-    }).then((response) => {
-        response.json()
-        .then((json => {
-            if (json.status === 200 || json._server_messages === "[\"{\\\"message\\\": \\\"Please setup default Email Account from Setup > Email > Email Account\\\", \\\"indicator\\\": \\\"red\\\"}\"]") {
-                var token = jwt.sign({}, jsonwebtokensecret);
-                res.send({status : 200, message : 'register succeed', token : token, data : json.data})
-            } else {
-                res.send({status : 500, message : 'register failed, your password not strong enough (min. 10 characters, combined with special characters and numbers) or user with mobile_phone or full_name that you input already exists', json : json})
+    if (req.body.uitype === 'IAE App')  {
+        fetch(ERPNEXT_API_BASE_URL+'/api/resource/User',{
+            method : 'post',
+            body : JSON.stringify({
+                "email" : req.body.email,
+                "first_name" : req.body.full_name,
+                "user_type" : "System User",
+                "new_password" : req.body.new_password,
+                "role_html" : "Non Profit Manager",
+                "Gender" : req.body.gender,
+                "mobile_no" : req.body.mobile_no,
+                "location" : req.body.address,
+                "angkatan" : req.body.angkatan,
+                "nim" : req.body.nim,
+                "sub_jurusan" : req.body.sub_jurusan,
+                "roles" : [
+                        {
+                            "role": "Non Profit Member"
+                        },
+                        {
+                            "role": "Non Profit Manager"
+                        }
+                    ]
+            }),
+            headers : {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+                'Authorization' : 'token '+erpNextCredentials.api_key+':'+erpNextCredentials.api_secret
             }
-        }))
-        .catch((err) => {
-            res.send({status : 501, message : 'register failed', err: err})
+        }).then((response) => {
+            response.json()
+            .then((json => {
+                if (json.status === 200 || json._server_messages === "[\"{\\\"message\\\": \\\"Please setup default Email Account from Setup > Email > Email Account\\\", \\\"indicator\\\": \\\"red\\\"}\"]"
+                    || json._server_messages === "[\"{\\\"indicator\\\": \\\"red\\\", \\\"message\\\": \\\"Please setup default Email Account from Setup > Email > Email Account\\\"}\"]"
+                ) {
+                    var token = jwt.sign({}, jsonwebtokensecret);
+                    res.send({status : 200, message : 'register succeed', token : token, data : json.data})
+                } else {
+                    res.send({status : 500, message : 'register failed, your password not strong enough (min. 10 characters, combined with special characters and numbers) or user with mobile_phone or full_name that you input already exists', json : json})
+                }
+            }))
+            .catch((err) => {
+                res.send({status : 501, message : 'register failed', err: err})
+            })
+        }).catch((err) => {
+            res.send({status: 502, message : 'register failed', err: err})
         })
-    }).catch((err) => {
-        res.send({status: 502, message : 'register failed', err: err})
-    })
+    } else {
+        fetch(ERPNEXT_API_BASE_URL+'/api/resource/User',{
+            method : 'post',
+            body : JSON.stringify({
+                "email" : req.body.email,
+                "first_name" : req.body.full_name,
+                "user_type" : "System User",
+                "new_password" : req.body.new_password,
+                "user_image" : req.body.user_image,
+                "role_html" : "Agriculture Manager",
+                "Gender" : req.body.gender,
+                "mobile_no" : req.body.mobile_no,
+                "location" : req.body.address,
+                "roles" : [
+                        {
+                            "role": "Agriculture Manager",
+                            "doctype": "Has Role",
+                            "creation": "2018-11-24 18:14:18.356269",
+                            "docstatus": 0,
+                            "parentfield": "roles",
+                            "parenttype": "User",
+                            "name": "45319a73e6",
+                            "idx": 4,
+                            "owner": "Administrator",
+                            "modified_by": "denisenricohasyim93@gmail.com",
+                            "modified": "2018-11-24 18:17:50.792479",
+                            "parent": "denisenricohasyim93@gmail.com"
+                        },
+                        {
+                            "role": "Agriculture User",
+                            "doctype": "Has Role",
+                            "creation": "2018-11-24 18:14:18.356269",
+                            "docstatus": 0,
+                            "parentfield": "roles",
+                            "parenttype": "User",
+                            "name": "2d8d5f0658",
+                            "idx": 5,
+                            "owner": "Administrator",
+                            "modified_by": "denisenricohasyim93@gmail.com",
+                            "modified": "2018-11-24 18:17:50.792479",
+                            "parent": "denisenricohasyim93@gmail.com"
+                        }
+                    ]
+            }),
+            headers : {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+                'Authorization' : 'token '+erpNextCredentials.api_key+':'+erpNextCredentials.api_secret
+            }
+        }).then((response) => {
+            response.json()
+            .then((json => {
+                if (json.status === 200 || json._server_messages === "[\"{\\\"message\\\": \\\"Please setup default Email Account from Setup > Email > Email Account\\\", \\\"indicator\\\": \\\"red\\\"}\"]") {
+                    var token = jwt.sign({}, jsonwebtokensecret);
+                    res.send({status : 200, message : 'register succeed', token : token, data : json.data})
+                } else {
+                    res.send({status : 503, message : 'register failed, your password not strong enough (min. 10 characters, combined with special characters and numbers) or user with mobile_phone or full_name that you input already exists', json : json})
+                }
+            }))
+            .catch((err) => {
+                res.send({status : 504, message : 'register failed', err: err})
+            })
+        }).catch((err) => {
+            res.send({status: 505, message : 'register failed', err: err})
+        })
+    }
 })
 
 module.exports = router
