@@ -19,3 +19,5 @@ app.use('/v0', gatewayv0)
 app.listen(3009, () => {
     console.log('DB User Management Service Listen to PORT 3009')
 })
+
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
