@@ -108,7 +108,7 @@ router.post('/', function (req, res) {
         }).then((response) => {
             response.json()
             .then((json => {
-                if (json.status === 200 || json._server_messages === "[\"{\\\"message\\\": \\\"Please setup default Email Account from Setup > Email > Email Account\\\", \\\"indicator\\\": \\\"red\\\"}\"]") {
+                if (json.status === 200 || JSON.parse(json._server_messages).message === "Please setup default Email Account from Setup > Email > Email Account") {
                     var token = jwt.sign({}, jsonwebtokensecret);
                     res.send({status : 200, message : 'register succeed', token : token, data : json.data})
                 } else {
