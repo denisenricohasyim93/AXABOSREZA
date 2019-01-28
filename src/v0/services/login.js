@@ -83,7 +83,7 @@ router.post('/forOwner', function (req, res) {
                                             var token = jwt.sign({}, jsonwebtokensecret);
                                             res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token })
                                         } else {
-                                            res.send({ status: 501, message: 'Maaf, Login Gagal, Nama Owner tidak ada di database' })
+                                            res.send({ status: 501, message: 'Maaf, Login Gagal, Nama Owner tidak ada di database', data : json.data })
                                         }
                                     } else {
                                         res.send({ status: 502, message: 'get owner list failed', json: json })
