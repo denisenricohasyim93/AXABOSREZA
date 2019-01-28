@@ -63,7 +63,7 @@ router.post('/forOwner', function (req, res) {
                     if (json.message === "Logged In") {
                         // var token = jwt.sign({}, jsonwebtokensecret);
                         // res.send({ status: 200, message: 'Login Berhasil', token: token, json : json})
-                        fetch(ERPNEXT_API_BASE_URL + '/api/resource/Supplier?fields=["name","owner_web_app_pass"]', {
+                        fetch(ERPNEXT_API_BASE_URL + '/api/resource/Supplier?fields=["name"]', {
                             method: 'get',
                             headers: {
                                 'Authorization': 'token ' + erpNextCredentials.api_key + ':' + erpNextCredentials.api_secret
