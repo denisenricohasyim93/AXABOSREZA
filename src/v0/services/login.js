@@ -74,16 +74,16 @@ router.post('/forOwner', function (req, res) {
                                     if (json.data) {
                                         // res.send({ status: 200, message: 'get crop list succeed', json: json })
                                         let ketemu = null;
-                                        let nama = null;
+                                        // let nama = null;
                                         await json.data.map(async (item, index) => {
                                             if (item.email_supplier === req.body.email) {
-                                                nama = await item.name
+                                                // nama = await item.name
                                                 ketemu = await item
                                             }
                                         })
                                         if (ketemu) {
                                             var token = jwt.sign({}, jsonwebtokensecret);
-                                            res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token, name : nama})
+                                            res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token, name : ketemu.name})
                                         } else {
                                             res.send({ status: 501, message: 'Maaf, Login Gagal, Nama Owner tidak ada di database'})
                                         }
