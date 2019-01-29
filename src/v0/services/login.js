@@ -58,6 +58,7 @@ router.post('/forOwner', function (req, res) {
         })
     })
         .then(response => {
+	    console.log(response)
             response.json()
                 .then(json => {
                     if (json.message === "Logged In") {
@@ -105,16 +106,16 @@ router.post('/forOwner', function (req, res) {
                 .catch((err) => {
                     res.send({
                         status: 506,
-                        message: 'Login Gagal'
-                        // err : err 
+                        message: 'Login Gagal',
+                        err : err 
                     })
                 })
         })
         .catch((err) => {
             res.send({
                 status: 507,
-                message: 'Login Gagal'
-                // err: err
+                message: 'Login Gagal',
+                err: err
             })
         })
 })
