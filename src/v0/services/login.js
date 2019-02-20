@@ -84,7 +84,7 @@ router.post('/forOwner', function (req, res) {
                                         })
                                         if (ketemu) {
                                             var token = jwt.sign({}, jsonwebtokensecret);
-                                            res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token, name : ketemu.name})
+                                            res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token, name : ketemu.name, ketemu: ketemu})
                                         } else {
                                             res.send({ status: 501, message: 'Maaf, Login Gagal, Nama Owner tidak ada di database'})
                                         }
