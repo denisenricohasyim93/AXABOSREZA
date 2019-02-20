@@ -62,6 +62,7 @@ router.post('/forOwner', function (req, res) {
             response.json()
                 .then(json => {
                     if (json.message === "Logged In") {
+                        var jeson = json;
                         // var token = jwt.sign({}, jsonwebtokensecret);
                         // res.send({ status: 200, message: 'Login Berhasil', token: token, json : json})
                         fetch(ERPNEXT_API_BASE_URL + '/api/resource/Supplier?limit_page_length=0&fields=["name","email_supplier"]', {
@@ -84,7 +85,7 @@ router.post('/forOwner', function (req, res) {
                                         })
                                         if (ketemu) {
                                             var token = jwt.sign({}, jsonwebtokensecret);
-                                            res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token, name : ketemu.name, ketemu: ketemu})
+                                            res.send({ status: 200, message: 'Selamat, Login Berhasil', token: token, name : ketemu.name, ketemu: ketemu, jeson: jeson})
                                         } else {
                                             res.send({ status: 501, message: 'Maaf, Login Gagal, Nama Owner tidak ada di database'})
                                         }
