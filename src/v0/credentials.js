@@ -9,6 +9,7 @@ const ERPNEXT_API_BASE_URL = 'http://202.157.176.50'
 
 const jsonwebtokensecret = 'tr1tr0n1kdb'
 
+
 const emailAccount = {
     user: 'dibis.tritronik@gmail.com',
     pass: 'tr1tr0n1kdb'
