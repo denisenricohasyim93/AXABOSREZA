@@ -26,11 +26,11 @@ router.delete ('/', function (req, res) {
           }
         })
         .catch (err => {
-          res.send ({status: 501, message: 'delete Crop Failed', err: err});
+          res.send ({status: 501, message: 'delete book failed', err: err});
         });
     })
     .catch (err => {
-      res.send ({status: 502, message: 'delete Crop Failed', err: err});
+      res.send ({status: 502, message: 'delete book failed', err: err});
     });
 });
 

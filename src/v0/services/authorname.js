@@ -7,7 +7,7 @@ router.get ('/:query', function (req, res) {
   console.log (req.params.query);
   fetch (
     ERPNEXT_API_BASE_URL +
-      '/api/resource/AXA%20Authors?fields=["*"]&limit_page_length=20',
+      '/api/resource/AXA%20Authors?fields=["*"]&limit_page_length=0',
     {
       method: 'GET',
       headers: {
@@ -24,7 +24,7 @@ router.get ('/:query', function (req, res) {
         .then (json => {
           res.send ({
             status: 200,
-            message: 'Berhasil Mendapatkan Data User List',
+            message: 'Berhasil Mendapatkan Data Penulis',
             data: json.data.filter (x => {
               return (
                 x.firstname
