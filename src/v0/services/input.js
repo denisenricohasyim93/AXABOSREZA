@@ -8,7 +8,7 @@ router.post ('/', function (req, res) {
   //   console.log(req.body)
   var data = new FormData ();
   var isi = `{\n\t"bookid": "${req.body.bookid}",\n\t"authorid": "${req.body.authorid}",\n\t"publisherid": "${req.body.publisherid}",\n\t"title": "${req.body.title}",\n\t"genre": "${req.body.genre}",\n\t"publicationyear": "${req.body.publicationyear}",\n\t"price": "${req.body.price}",\n\t"name": "${req.body.bookid}"\n}`
-  console.log(isi)
+  // console.log(isi)
   data.append (
     'data',
     isi

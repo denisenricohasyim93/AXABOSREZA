@@ -4,7 +4,7 @@ var {erpNextCredentials, ERPNEXT_API_BASE_URL} = require ('../credentials');
 const fetch = require ('node-fetch');
 
 router.get ('/:query', function (req, res) {
-  console.log (req.params.query);
+  // console.log (req.params.query);
   fetch (
     ERPNEXT_API_BASE_URL +
       '/api/resource/AXA%20Books?fields=["*"]&limit_page_length=20',
