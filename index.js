@@ -22,7 +22,7 @@ app.get ('/', function (req, res) {
 
 app.use ('/v0', gatewayv0);
 
-app.listen (3009, () => {
+app.listen (7777, () => {
   console.log ('AXA BOS REZA Listen to PORT 7777');
 });
 
