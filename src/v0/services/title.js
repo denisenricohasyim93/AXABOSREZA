@@ -24,7 +24,7 @@ router.get ('/:query', function (req, res) {
         .then (json => {
           res.send ({
             status: 200,
-            message: 'Berhasil Mendapatkan Data User List',
+            message: 'Berhasil Mendapatkan Data Buku',
             data: json.data.filter (x => {
               return (
                 x.title
